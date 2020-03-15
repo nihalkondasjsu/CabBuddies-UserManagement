@@ -1,4 +1,4 @@
-package com.cabbuddies.usermanagement.rest.controllers.auth;
+package com.cabbuddies.usermanagement.rest.controllers.profile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,22 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cabbuddieslib.aop.helper.annotation.JWTValidate;
 import com.cabbuddieslib.data.auth.JWT;
-import com.cabbuddieslib.managers.auth.JWTManager;
+import com.cabbuddieslib.data.user.User;
+import com.cabbuddieslib.managers.user.UserManager;
 import com.cabbuddieslib.utils.Serialize;
 
 @RestController
-@DependsOn({"JWTManager"})
-public class JWTValidatorAuth {
-
+@DependsOn({"userManager"})
+public class GetUserProfile {
+	
 	@Autowired
-	JWTManager jwtManager;
+	UserManager userManager;
 	
 	@JWTValidate
-	@RequestMapping(value="/validateJWT",method=RequestMethod.POST)
-	public JWT validateJWT(HttpServletRequest hsr,JWT jwt) {
+	@RequestMapping(value="/me",method=RequestMethod.GET)
+	public User validateJWT(HttpServletRequest hsr,JWT jwt) {
+		if(jwt==null)
+			return null;
 		System.out.println(hsr.getHeader("authorization"));
 		System.out.println(Serialize.toString(jwt));
-		return jwt;
+		return userManager.getUser(jwt.getUserId());
 	}
 	
 }
