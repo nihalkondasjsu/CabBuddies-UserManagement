@@ -7,6 +7,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.cabbuddieslib.utils.Basic;
+
 @SpringBootApplication
 @EntityScan({"com.cabbuddieslib","com.cabbuddies.usermanagement"})
 @ComponentScan({"com.cabbuddieslib","com.cabbuddies.usermanagement"})
@@ -18,5 +20,6 @@ public class CabBuddiesUserManagementApplication {
 		for(String beanName:context.getBeanDefinitionNames()) {
 			System.out.println(beanName);
 		}
+		Basic.successPrint();
 	}
 }

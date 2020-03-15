@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cabbuddieslib.aop.helper.annotation.Debug;
 import com.cabbuddieslib.data.auth.JWT;
+import com.cabbuddieslib.data.user.User;
 import com.cabbuddieslib.managers.auth.JWTManager;
 import com.cabbuddieslib.managers.user.UserManager;
 import com.cabbuddieslib.utils.LibraryVersion;
-import com.cabbuddieslib.data.user.User;
 
 import net.minidev.json.JSONObject;
 
@@ -28,6 +29,7 @@ public class BasicController {
 
 	@RequestMapping(value="/happy",method=RequestMethod.GET)
 	@ResponseBody
+	@Debug
 	public JSONObject index() {
 		JSONObject json = new JSONObject();
 		json.put("Happy", "Nihal");
