@@ -15,7 +15,7 @@ import com.cabbuddieslib.utils.Serialize;
 
 @RestController
 @DependsOn({"JWTManager"})
-public class JWTValidatorAuth {
+public class JWTValidatorController {
 
 	@Autowired
 	JWTManager jwtManager;
