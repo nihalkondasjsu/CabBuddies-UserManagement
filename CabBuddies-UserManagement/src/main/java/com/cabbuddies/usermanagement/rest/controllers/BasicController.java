@@ -5,6 +5,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,7 @@ import com.cabbuddieslib.utils.LibraryVersion;
 
 import net.minidev.json.JSONObject;
 
+
 @RestController
 @DependsOn({"userManager","JWTManager"})
 public class BasicController {
@@ -26,6 +28,27 @@ public class BasicController {
 	
 	@Autowired
 	JWTManager jwtManager;
+	
+	String value="";
+
+	@RequestMapping(value="/getValue",method=RequestMethod.GET)
+	@ResponseBody
+	public JSONObject getValue() {
+		JSONObject json = new JSONObject();
+		json.put("value", value);
+		return json;
+	}
+	
+
+	@RequestMapping(value="/setValue",method=RequestMethod.GET)
+	@ResponseBody
+	public JSONObject setValue(@RequestParam("value")String valueInp) {
+		JSONObject json = new JSONObject();
+		value = valueInp;
+		json.put("value", value);
+		return json;
+	}
+	
 
 	@RequestMapping(value="/happy",method=RequestMethod.GET)
 	@ResponseBody

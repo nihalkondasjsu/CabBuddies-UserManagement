@@ -15,7 +15,7 @@ import com.cabbuddieslib.data.user.UserDetails;
 import com.cabbuddieslib.utils.RemoteIP;
 import com.cabbuddieslib.utils.Serialize;
 
-import net.minidev.json.JSONObject;
+import org.json.JSONObject;
 
 @RestController
 @DependsOn({"userManager","JWTManager"})
